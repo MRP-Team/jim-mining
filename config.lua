@@ -9,7 +9,7 @@ Config = {
 	img = "qb-inventory/html/images/", --Set this to the image directory of your inventory script or "nil" if using newer qb-menu
 	CheckMarks = true, -- shows checkmarks if user has the materials to craft an item, set false if causing lag.
 	Lan = "en", -- Pick your language here
-	JimMenu = true, -- Set this to true if using update qb-menu with icons
+	JimMenu = false, -- Set this to true if using update qb-menu with icons
 	JimShops = false, -- Set this to true if using jim-shops
 	Job = nil, -- set this to a job role eg "miner" or nil for no job
 	Notify = "qb",
@@ -276,17 +276,14 @@ Config = {
 ------------------------------------------------------------
 --Mining Store Items
 	Items = {
-		label = "Mining Store",  slots = 9,
+		label = "Mining Store",  slots = 6,
 		items = {
-			{ name = "water_bottle", price = 0, amount = 100, info = {}, type = "item", slot = 1, },
-			{ name = "sandwich", price = 0, amount = 250, info = {}, type = "item", slot = 2, },
-			{ name = "bandage", price = 0, amount = 100, info = {}, type = "item", slot = 3, },
-			{ name = "weapon_flashlight", price = 0, amount = 100, info = {}, type = "item", slot = 4, },
-			{ name = "goldpan", price = 0, amount = 100, info = {}, type = "item", slot = 5, },
-			{ name = "pickaxe",	price = 100, amount = 100, info = {}, type = "item", slot = 6, },
-			{ name = "miningdrill",	price = 10000, amount = 50, info = {}, type = "item", slot = 7, },
-			{ name = "mininglaser",	price = 60000, amount = 5, info = {}, type = "item", slot = 8, },
-			{ name = "drillbit", price = 0, amount = 100, info = {}, type = "item", slot = 9, },
+			{ name = "weapon_flashlight", price = 1000, amount = 100, info = {}, type = "item", slot = 1, },
+			{ name = "goldpan", price = 1000, amount = 100, info = {}, type = "item", slot = 2, },
+			{ name = "pickaxe",	price = 500, amount = 100, info = {}, type = "item", slot = 3, },
+			{ name = "miningdrill",	price = 50000, amount = 50, info = {}, type = "item", slot = 4, },
+			{ name = "mininglaser",	price = 150000, amount = 5, info = {}, type = "item", slot = 5, },
+			{ name = "drillbit", price = 100, amount = 100, info = {}, type = "item", slot = 6, },
 		},
 	},
 }
