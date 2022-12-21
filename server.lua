@@ -22,23 +22,29 @@ end)
 RegisterServerEvent('jim-mining:MineReward', function()
     local Player = QBCore.Functions.GetPlayer(source)
     local randomChance = math.random(1, 3)
-    Player.Functions.AddItem('stone', randomChance, false, {["quality"] = nil})
-    TriggerClientEvent("inventory:client:ItemBox", source, QBCore.Shared.Items["stone"], "add", randomChance)
+		if randomChance == 1 and math.random(1, 5) == 5 then
+			Player.Functions.AddItem('unknownstone', randomChance, false, {["quality"] = nil})
+			TriggerClientEvent("inventory:client:ItemBox", source, QBCore.Shared.Items["unknownstone"], "add", randomChance)
+		else
+			Player.Functions.AddItem('stone', randomChance, false, {["quality"] = nil})
+			TriggerClientEvent("inventory:client:ItemBox", source, QBCore.Shared.Items["stone"], "add", randomChance)
+		end
 end)
 
 --Stone Cracking Checking Triggers
 --Command here to check if any stone is in inventory
 RegisterServerEvent('jim-mining:CrackReward', function(cost)
 	local src = source
-    local Player = QBCore.Functions.GetPlayer(src)
-    Player.Functions.RemoveItem('stone', cost)
-    TriggerClientEvent("inventory:client:ItemBox", src, QBCore.Shared.Items["stone"], "remove", 1)
-	for i = 1, math.random(1,3) do
-		local randItem = Config.CrackPool[math.random(1, #Config.CrackPool)]
-		amount = math.random(1, 2)
-		if Player.Functions.AddItem(randItem, amount) then
-			TriggerClientEvent('inventory:client:ItemBox', src, QBCore.Shared.Items[randItem], 'add', amount)
-		else print("error, no space") end
+	local Player = QBCore.Functions.GetPlayer(src)
+	if Player.Functions.RemoveItem('stone', cost) then
+		TriggerClientEvent("inventory:client:ItemBox", src, QBCore.Shared.Items["stone"], "remove", 1)
+		for i = 1, math.random(1,3) do
+			local randItem = Config.CrackPool[math.random(1, #Config.CrackPool)]
+			amount = math.random(1, 2)
+			if Player.Functions.AddItem(randItem, amount) then
+				TriggerClientEvent('inventory:client:ItemBox', src, QBCore.Shared.Items[randItem], 'add', amount)
+			else print("error, no space") end
+		end
 	end
 end)
 
@@ -47,8 +53,8 @@ end)
 RegisterServerEvent('jim-mining:WashReward', function(cost)
 	local src = source
     local Player = QBCore.Functions.GetPlayer(src)
-    Player.Functions.RemoveItem('stone', cost)
-    TriggerClientEvent("inventory:client:ItemBox", src, QBCore.Shared.Items["stone"], "remove", cost)
+    Player.Functions.RemoveItem('unknownstone', cost)
+    TriggerClientEvent("inventory:client:ItemBox", src, QBCore.Shared.Items["unknownstone"], "remove", cost)
 	for i = 1, math.random(1,2) do
 		local randItem = Config.WashPool[math.random(1, #Config.WashPool)]
 		amount = 1

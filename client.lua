@@ -179,7 +179,7 @@ function makeJob()
 	for k, v in pairs(Config.Locations["Washing"]) do
 		Targets["Washing"..k] =
 			exports['qb-target']:AddCircleZone("Washing"..k, v.coords.xyz, 9.0, {name="Washing"..k, debugPoly=Config.Debug, useZ=true, },
-			{ options = { { event = "jim-mining:WashStart", icon = "fas fa-hands-bubbles", item = "stone", label = Loc[Config.Lan].info["washstone"], coords = v.coords }, },
+			{ options = { { event = "jim-mining:WashStart", icon = "fas fa-hands-bubbles", item = "unknownstone", label = Loc[Config.Lan].info["washstone"], coords = v.coords }, },
 				distance = 2.0
 			})
 		if Config.Blips and v.blipTrue then Blip[#Blip+1] = makeBlip(v) end
@@ -482,7 +482,7 @@ local Washing = false
 RegisterNetEvent('jim-mining:WashStart', function(data)
 	if Washing then return end
 	local cost = 1
-	if HasItem("stone", cost) then
+	if HasItem("unknownstone", cost) then
 		Washing = true
 		LocalPlayer.state:set("inv_busy", true, true) TriggerEvent('inventory:client:busy:status', true) TriggerEvent('canUseInventoryAndHotbar:toggle', false)
 		--Create Rock and Attach
@@ -514,7 +514,7 @@ RegisterNetEvent('jim-mining:WashStart', function(data)
 			destroyProp(Rock)
 			unloadPtfxDict("core")
 			Washing = false
-		end, "stone")
+		end, "unknownstone")
 	else
 		triggerNotify(nil, Loc[Config.Lan].error["no_stone"], 'error')
 	end
@@ -669,10 +669,10 @@ RegisterNetEvent('jim-mining:JewelSell', function(data)
     exports['qb-menu']:openMenu({
 		{ header = Loc[Config.Lan].info["jewel_buyer"], txt = Loc[Config.Lan].info["sell_jewel"], isMenuHeader = true },
 		{ icon = "fas fa-circle-xmark", header = "", txt = Loc[Config.Lan].info["close"], params = { event = "jim-mining:CraftMenu:Close" } },
-		{ header = QBCore.Shared.Items["emerald"].label, txt = Loc[Config.Lan].info["see_options"], params = { event = "jim-mining:JewelSell:Sub", args = { sub = "emerald", ped = data.ped } } },
-		{ header = QBCore.Shared.Items["ruby"].label, txt = Loc[Config.Lan].info["see_options"], params = { event = "jim-mining:JewelSell:Sub", args = { sub = "ruby", ped = data.ped } } },
-		{ header = QBCore.Shared.Items["diamond"].label, txt = Loc[Config.Lan].info["see_options"], params = { event = "jim-mining:JewelSell:Sub", args = { sub = "diamond", ped = data.ped } } },
-		{ header = QBCore.Shared.Items["sapphire"].label, txt = Loc[Config.Lan].info["see_options"], params = { event = "jim-mining:JewelSell:Sub", args = { sub = "sapphire", ped = data.ped } } },
+		-- { header = QBCore.Shared.Items["emerald"].label, txt = Loc[Config.Lan].info["see_options"], params = { event = "jim-mining:JewelSell:Sub", args = { sub = "emerald", ped = data.ped } } },
+		-- { header = QBCore.Shared.Items["ruby"].label, txt = Loc[Config.Lan].info["see_options"], params = { event = "jim-mining:JewelSell:Sub", args = { sub = "ruby", ped = data.ped } } },
+		-- { header = QBCore.Shared.Items["diamond"].label, txt = Loc[Config.Lan].info["see_options"], params = { event = "jim-mining:JewelSell:Sub", args = { sub = "diamond", ped = data.ped } } },
+		-- { header = QBCore.Shared.Items["sapphire"].label, txt = Loc[Config.Lan].info["see_options"], params = { event = "jim-mining:JewelSell:Sub", args = { sub = "sapphire", ped = data.ped } } },
 		{ header = Loc[Config.Lan].info["rings"], txt = Loc[Config.Lan].info["see_options"], params = { event = "jim-mining:JewelSell:Sub", args = { sub = "rings", ped = data.ped } } },
 		{ header = Loc[Config.Lan].info["necklaces"], txt = Loc[Config.Lan].info["see_options"], params = { event = "jim-mining:JewelSell:Sub", args = { sub = "necklaces", ped = data.ped } } },
 		{ header = Loc[Config.Lan].info["earrings"], txt = Loc[Config.Lan].info["see_options"], params = { event = "jim-mining:JewelSell:Sub", args = { sub = "earrings", ped = data.ped } } },
