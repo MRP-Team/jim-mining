@@ -307,8 +307,7 @@ Crafting = {
 		{ ["steel"] = { ["ironore"] = 1, ["carbon"] = 1 }, ['amount'] = 4 },
 		{ ["aluminum"] = { ["can"] = 10, }, ['amount'] = 4 },
 		{ ["glass"] = { ["bottle"] = 10, }, ['amount'] = 4 },
-		{ ["plastic"] = { ["empty_plastic_bottle"] = 10, }, ['amount'] = 4 },
-		{ ["rubber"] = { ["fishingboot"] = 100, } },
+		{ ["plastic"] = { ["rubber"] = 1, }, ['amount'] = 10 },
 	},
 	GemCut = {
 		{ ["emerald"] = { ["uncut_emerald"] = 1, } },
